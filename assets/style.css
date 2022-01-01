@@ -19,7 +19,7 @@ body {
     background-color: lightseagreen;
     border: 10px solid black;
     padding: 10px;
-    height: 100%;
+    height: 100vh;
     font-family: Nunito, Verdana, Geneva, Tahoma, sans-serif
 }
 
@@ -33,6 +33,8 @@ header {
 main {
    display: flex;
    flex-direction: column;
+   height: 100%;
+   justify-content: center;
    align-items: center; 
    border: 1px solid black;
 }
@@ -68,8 +70,13 @@ button {
 
 button:hover {
     background-color: rgb(109, 165, 211);
-    color: gray;
+    color: whitesmoke;
     border: none;
+}
+
+button.ans {
+    text-align: left;
+    padding-left: 5px;
 }
 
 h1 {
@@ -82,6 +89,10 @@ h1 {
 li {
     list-style: none;
 }
+
+/* .hide {
+    display: none;
+} */
 
 /**timer**/
 div#timer {
@@ -135,7 +146,7 @@ section.scores li {
     margin: 2px 0;
 }
 
-div#highscore {
+div#hs-buttons {
     display: flex;
     flex-direction: row;
 }
