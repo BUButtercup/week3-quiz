@@ -3,6 +3,7 @@ let finalScore = 0;
 let secondsLeft = 60;
 let secondsPast = 0;
 let timerIncrement;
+let highScores = [];
 
 //defining linking variables/objects
 const startButtonEl = document.querySelector('#startbutton');
@@ -23,30 +24,27 @@ const answerCorrect = {
     num5: document.querySelector('#corr5')
 };
 const answerIncorrect = {
-    num1: document.querySelector('#incorr1'),
+    num1: document.querySelector('#incorr1'),//ques1//
     num2: document.querySelector('#incorr2'),
     num3: document.querySelector('#incorr3'),
-    num4: document.querySelector('#incorr4'),
+    num4: document.querySelector('#incorr4'),//ques2//
     num5: document.querySelector('#incorr5'),
     num6: document.querySelector('#incorr6'),
-    num7: document.querySelector('#incorr7'),
+    num7: document.querySelector('#incorr7'),//ques3//
     num8: document.querySelector('#incorr8'),
     num9: document.querySelector('#incorr9'),
-    num10: document.querySelector('#incorr10'),
+    num10: document.querySelector('#incorr10'),//ques4//
     num11: document.querySelector('#incorr11'),
     num12: document.querySelector('#incorr12'),
-    num13: document.querySelector('#incorr13')
+    num13: document.querySelector('#incorr13')//ques5//
 };
-// const correctClick = element => {
-//     element.onclick = function(){
-//     console.log('Hi');
-//     }
-// }
 const fsPage = document.querySelector('#finalscore')
 const fsBox = document.querySelector('#fs');
 const initialInput = document.querySelector('#initials');
-const viewHSEl = document.querySelector('#view-hs');
+const viewHSEl1 = document.querySelector('#view-hs1');
+const viewHSEl2 = document.querySelector('#view-hs2');
 const hsPage = document.querySelector('#hs');
+const hsForm = document.querySelector('form');
 const hsBox = {
     box1: document.querySelector('#hs1'),
     box2: document.querySelector('#hs2'),
@@ -54,6 +52,7 @@ const hsBox = {
     box4: document.querySelector('#hs4'),
     box5: document.querySelector('#hs5')
 }
+const submitHS = document.querySelector('#submit');
 const goBackButton = document.querySelector('#goback');
 const clearScoresButton = document.querySelector('#clear');
 
@@ -96,7 +95,7 @@ function startTimer(){
             clearInterval(timerIncrement);
             hideQuestions();
             showElement(fsPage);
-            fsBox.textContent += ("Your final score is " + finalScore + ". You didn't complete the quiz.");
+            fsBox.textContent += ("Your final score is " + finalScore + ". You didn't complete the quiz.");//this message will log on final score page is user lets time run out.
         }
     }, 1000);
 }//quiz timer in upper right corner
@@ -121,7 +120,32 @@ function addToScore(){
         return finalScore;
 }//when correct answer selected, 10 points added to finalScore
 
-viewHSEl.onclick = function() {
+function collectHighScore(event) {
+    event.preventDefault();
+    if (initialInput.value === ''){
+        event.preventDefault();
+        alert('Please enter your initials before submission.');
+        console.log('no initials');
+        return false;
+    }
+    let userHS = {
+        initials: hsForm.value,
+        score: finalScore,
+        time: secondsPast
+    }
+    highScores.push(userHS);
+    hsForm.reset();
+    console.log('success!');
+}//logs user initials and scores to object after checking that they gave initials.
+
+viewHSEl1.onclick = function() {
+    hideQuestions();
+    hideElement(fsPage);
+    hideElement(introPage);
+    showElement(hsPage);
+}
+
+viewHSEl2.onclick = function() {
     hideQuestions();
     hideElement(fsPage);
     hideElement(introPage);
@@ -267,36 +291,4 @@ answerIncorrect.num13.onclick = function(){
     stopTimer();
 };
 
-
-//question 2
-// questionPage.page2.addEventListener('click', function(){
-
-//     hideElement(questionPage.page2);
-//     showElement(questionPage.page3);
-// });
-
-
-// answerThreeEl.addEventListener('click', function(){
-//     finalScore;
-//     if(true) {
-        // displayQuestion(questionBox, questionFour.content, answerOneEl, answerTwoEl, answerThreeEl, answerFourEl,  questionFour.answersIncorrect[0], questionFour.answersIncorrect[1], questionFour.answersIncorrect[2], questionFour.answerCorrect);
-//         addToScore();
-//     }
-// });
-// answerFourEl.addEventListener('click', function(){
-//     finalScore;
-//     if(true) {
-        // displayQuestion(questionBox, questionFive.content, answerOneEl, answerTwoEl, answerThreeEl, answerFourEl,  questionFive.answerCorrect, questionFive.answersIncorrect[0], questionFive.answersIncorrect[1], questionFive.answersIncorrect[2]);
-        // answerThreeEl.setAttribute('style', 'display: none;');
-        // answerFourEl.setAttribute('style', 'display: none;');
-//         addToScore();
-//     }
-// });
-// answerFiveEl.addEventListener('click', function(){
-//     if(true) {
-//         hideElement(questionPage);
-//         showElement(fsPage);
-//         addToScore();
-//         passScore(fsBox, finalScore);
-//     }
-// });
+submitHS.addEventListener('click', collectHighScore);
