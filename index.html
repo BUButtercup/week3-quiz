@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a id="view-hs1" href="#"><p>View Highscores</p></a>
+        <a class="view-hs" href="#">View Highscores</a>
         <div id="timer"><span>Time: </span><div id="box"></div></div>
     </header>
     <main>
@@ -26,9 +26,9 @@
             </p>
             <ul>
                 <li><button class="ans correct" id="corr1">You can put any data type in an array, you just can't mix them.</button></li>
-                <li><button class="ans incorrect" id="incorr1">Booleans</button></li>
-                <li><button class="ans incorrect" id="incorr2">strings</button></li>
-                <li><button class="ans incorrect" id="incorr3">integers</button></li>
+                <li><button class="ans incorrect1" id="incorr1">Booleans</button></li>
+                <li><button class="ans incorrect1" id="incorr2">strings</button></li>
+                <li><button class="ans incorrect1" id="incorr3">integers</button></li>
             </ul>
         </section>
     <!--question 2-->
@@ -37,10 +37,10 @@
             What are methods?
             </p>
             <ul>
-                <li><button class="ans incorrect"id="incorr4">An object that holds a piece of code for repeated independent use</button></li>
+                <li><button class="ans incorrect2"id="incorr4">An object that holds a piece of code for repeated independent use</button></li>
                 <li><button class="ans correct"id="corr2">Actions that can only be performed on objects, not independently</button></li>
-                <li><button class="ans incorrect"id="incorr5">Values assigned to parameters of a function</button></li>
-                <li><button class="ans incorrect"id="incorr6">Data being held in an object</button></li>
+                <li><button class="ans incorrect2"id="incorr5">Values assigned to parameters of a function</button></li>
+                <li><button class="ans incorrect2"id="incorr6">Data being held in an object</button></li>
             </ul>
         </section>
     <!--question 3-->
@@ -49,10 +49,10 @@
             What does DOM stand for?
             </p>
             <ul>
-                <li><button class="ans incorrect"id="incorr7">Dedicated Orientation Method</button></li>
-                <li><button class="ans incorrect"id="incorr8">Definitely Ought to be Mentored</button></li>
+                <li><button class="ans incorrect3"id="incorr7">Dedicated Orientation Method</button></li>
+                <li><button class="ans incorrect3"id="incorr8">Definitely Ought to be Mentored</button></li>
                 <li><button class="ans correct"id="corr3">Document Object Model</button></li>
-                <li><button class="ans incorrect"id="incorr9">Dumb Old Method</button></li>
+                <li><button class="ans incorrect3"id="incorr9">Dumb Old Method</button></li>
             </ul>
         </section>
     <!--question 4-->
@@ -63,9 +63,9 @@
                 console.log(`This is a ${objName}!`);</code>
             </p>
             <ul>
-                <li><button class="ans incorrect"id="incorr10">This code will not run, the syntax is incorrect</button></li>
-                <li><button class="ans incorrect"id="incorr11">This is a ${objname}! will print in the console</button></li>
-                <li><button class="ans incorrect"id="incorr12">The string will be stored inside the declared variable</button></li>
+                <li><button class="ans incorrect4"id="incorr10">This code will not run, the syntax is incorrect</button></li>
+                <li><button class="ans incorrect4"id="incorr11">This is a ${objname}! will print in the console</button></li>
+                <li><button class="ans incorrect4"id="incorr12">The string will be stored inside the declared variable</button></li>
                 <li><button class="ans correct"id="corr4">This is a template literal! will be logged in the console</button></li>
             </ul>
         </section>
@@ -76,32 +76,27 @@
             </p>
             <ul>
                 <li><button class="ans correct"id="corr5">False</button></li>
-                <li><button class="ans incorrect"id="incorr13">True</button></li>
+                <li><button class="ans incorrect5"id="incorr13">True</button></li>
             </ul>
         </section>
     <!--final score-->
         <section id="finalscore">
             <h1>All done!</h1>
             <p id="fs"></p>
-            <form>
+            <form id="#fsform">
                 <label for="initials">Enter initials:</label>
                 <input type="text" name="initials" id="initials"> 
                 <input type="submit" id="submit">
             </form>
-            <p>Visit <a href="#" id="view-hs2">View Highscores</a> to see where you rank!</p>
+            <p>Visit "View Highscores" to see where you rank!</p>
         </section>
     <!--highscores-->
         <section class="scores" id="hs">
             <h1>Highscores</h1>
-            <ul>
-                <li id="hs1">1. </li>
-                <li id="hs2">2. </li>
-                <li id="hs3">3. </li>
-                <li id="hs4">4. </li>
-                <li id="hs5">5. </li>
+            <ul id="hs-list">
             </ul>
             <div id="hs-buttons">
-                <button id="goback">Go Back</button>
+                <button id="reset">Reset Game</button>
                 <button id="clear">Clear Highscores</button>
             </div>
         </section>

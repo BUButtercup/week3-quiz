@@ -16,47 +16,60 @@ const questionPage = {
     page4: document.querySelector('#ques4'),
     page5: document.querySelector('#ques5')
 }
-const answerCorrect = {
-    num1: document.querySelector('#corr1'),
-    num2: document.querySelector('#corr2'),
-    num3: document.querySelector('#corr3'),
-    num4: document.querySelector('#corr4'),
-    num5: document.querySelector('#corr5')
-};
-const answerIncorrect = {
-    num1: document.querySelector('#incorr1'),//ques1//
-    num2: document.querySelector('#incorr2'),
-    num3: document.querySelector('#incorr3'),
-    num4: document.querySelector('#incorr4'),//ques2//
-    num5: document.querySelector('#incorr5'),
-    num6: document.querySelector('#incorr6'),
-    num7: document.querySelector('#incorr7'),//ques3//
-    num8: document.querySelector('#incorr8'),
-    num9: document.querySelector('#incorr9'),
-    num10: document.querySelector('#incorr10'),//ques4//
-    num11: document.querySelector('#incorr11'),
-    num12: document.querySelector('#incorr12'),
-    num13: document.querySelector('#incorr13')//ques5//
-};
-const fsPage = document.querySelector('#finalscore')
+
+//correct answers:
+const ansCor1 =  document.querySelector('#corr1');
+const ansCor2 =  document.querySelector('#corr2');
+const ansCor3 =  document.querySelector('#corr3');
+const ansCor4 =  document.querySelector('#corr4');
+const ansCor5 =  document.querySelector('#corr5');
+
+//incorrect answers:
+const ansInc1 = document.querySelectorAll('.incorrect1');
+const ansInc2 = document.querySelectorAll('.incorrect2');
+const ansInc3 = document.querySelectorAll('.incorrect3');
+const ansInc4 = document.querySelectorAll('.incorrect4');
+const ansInc5 = document.querySelectorAll('.incorrect5');
+
+const fsPage = document.querySelector('#finalscore');
 const fsBox = document.querySelector('#fs');
+const fsForm = document.querySelector('form');
 const initialInput = document.querySelector('#initials');
-const viewHSEl1 = document.querySelector('#view-hs1');
-const viewHSEl2 = document.querySelector('#view-hs2');
+const viewHSEl = document.querySelectorAll('.view-hs');
 const hsPage = document.querySelector('#hs');
-const hsForm = document.querySelector('form');
-const hsBox = {
-    box1: document.querySelector('#hs1'),
-    box2: document.querySelector('#hs2'),
-    box3: document.querySelector('#hs3'),
-    box4: document.querySelector('#hs4'),
-    box5: document.querySelector('#hs5')
-}
+// const hsForm = document.querySelector('form');
 const submitHS = document.querySelector('#submit');
-const goBackButton = document.querySelector('#goback');
+const highScoreList = document.querySelector('#hs-list');
+const resetButton = document.querySelector('#reset');
 const clearScoresButton = document.querySelector('#clear');
 
-//helper functions
+//functions
+function displayHS(){
+    highScoreList.innerHTML = '';
+    for (let i = 0; i < highScores.length; i++){
+        let highScoresElement = highScores[i];
+        let listItem = document.createElement('li');
+        listItem.setAttribute('class', 'high-score');
+        listItem.textContent = highScoresElement.initials + ' scored ' + highScoresElement.score + ' in ' + highScoresElement.time;
+        highScoreList.appendChild(listItem);
+    }
+    console.log(highScores);
+}
+
+function storeHS(){
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
+function startGame(){
+    let storedHS = JSON.parse(localStorage.getItem('highScores'));
+    if (storedHS !== null){
+        highScores = storedHS;
+    }
+    hideQuestions();
+    hideElement(fsPage);
+    hideElement(hsPage);
+}
+
 function hideElement(element){
     element.setAttribute('style', 'display: none;');
 }//hides selected element
@@ -79,9 +92,8 @@ function changeCard(element1, element2){
     showElement(element2);
 }//to switch to next card in sequence
 
-function passFinalScore(element){
-    finalScore;
-    element.textContent += ("Your final score is " + finalScore + ". You completed the quiz in " + secondsPast + " seconds.");
+function passFinalScore(){
+    fsBox.textContent += ("Your final score is " + finalScore + ". You completed the quiz in " + secondsPast + " seconds.");
 }//passes final score to final score page
 
 function startTimer(){
@@ -116,46 +128,28 @@ function loseTime(){
 function addToScore(){
         finalScore;
         finalScore = finalScore+=10;
-        console.log(finalScore);
+        console.log('final Score: ', finalScore);
         return finalScore;
 }//when correct answer selected, 10 points added to finalScore
 
-function collectHighScore(event) {
-    event.preventDefault();
-    if (initialInput.value === ''){
-        event.preventDefault();
-        alert('Please enter your initials before submission.');
-        console.log('no initials');
-        return false;
-    }
-    let userHS = {
-        initials: hsForm.value,
-        score: finalScore,
-        time: secondsPast
-    }
-    highScores.push(userHS);
-    hsForm.reset();
-    console.log('success!');
-}//logs user initials and scores to object after checking that they gave initials.
 
-viewHSEl1.onclick = function() {
-    hideQuestions();
-    hideElement(fsPage);
-    hideElement(introPage);
-    showElement(hsPage);
-}
-
-viewHSEl2.onclick = function() {
-    hideQuestions();
-    hideElement(fsPage);
-    hideElement(introPage);
-    showElement(hsPage);
-}
-
-//assigning initial display state
-hideQuestions();
-hideElement(fsPage);
-hideElement(hsPage);
+//highscore page links
+// viewHSEl.forEach(element => {
+//     element.onclick = () => {
+//         hideQuestions();
+//         hideElement(fsPage);
+//         hideElement(introPage);
+//         showElement(hsPage);
+//     }
+// });
+viewHSEl.forEach(element => {
+    element.addEventListener('click', function(){
+        hideQuestions();
+        hideElement(fsPage);
+        hideElement(introPage);
+        showElement(hsPage);
+    });
+});
 
 //to start game
 startButtonEl.addEventListener('click', function(){
@@ -165,130 +159,138 @@ startButtonEl.addEventListener('click', function(){
 });
 
 //question 1
-answerCorrect.num1.onclick = function(){
+ansCor1.onclick = () => {
     console.log('yay!');
     hideElement(questionPage.page1);
     showElement(questionPage.page2);
     addToScore();
 };
 
-answerIncorrect.num1.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page1);
-    showElement(questionPage.page2);
-    loseTime();
-};
-answerIncorrect.num2.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page1);
-    showElement(questionPage.page2);
-    loseTime();
-};
-answerIncorrect.num3.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page1);
-    showElement(questionPage.page2);
-    loseTime();
-};
+ansInc1.forEach(element => {
+    element.onclick = () => {
+        console.log('nope!');
+        hideElement(questionPage.page1);
+        showElement(questionPage.page2);
+        loseTime();
+    }
+});
 
 //question 2
-answerCorrect.num2.onclick = function(){
+ansCor2.onclick = () => {
     console.log('yay!');
     hideElement(questionPage.page2);
     showElement(questionPage.page3);
     addToScore();
 };
 
-answerIncorrect.num4.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page2);
-    showElement(questionPage.page3);
-    loseTime();
-};
-answerIncorrect.num5.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page2);
-    showElement(questionPage.page3);
-    loseTime();
-};
-answerIncorrect.num6.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page2);
-    showElement(questionPage.page3);
-    loseTime();
-};
+ansInc2.forEach(element => {
+    element.onclick = () => {
+        console.log('nope!');
+        hideElement(questionPage.page2);
+        showElement(questionPage.page3);
+        loseTime();
+    }
+});
 
 //question 3
-answerCorrect.num3.onclick = function(){
+ansCor3.onclick = () => {
     console.log('yay!');
     hideElement(questionPage.page3);
     showElement(questionPage.page4);
     addToScore();
 };
 
-answerIncorrect.num7.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page3);
-    showElement(questionPage.page4);
-    loseTime();
-};
-answerIncorrect.num8.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page3);
-    showElement(questionPage.page4);
-    loseTime();
-};
-answerIncorrect.num9.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page3);
-    showElement(questionPage.page4);
-    loseTime();
-};
+ansInc3.forEach(element => {
+    element.onclick = () => {
+        console.log('nope!');
+        hideElement(questionPage.page3);
+        showElement(questionPage.page4);
+        loseTime();
+    }
+});
 
 //question 4
-answerCorrect.num4.onclick = function(){
+ansCor4.onclick = () => {
     console.log('yay!');
     hideElement(questionPage.page4);
     showElement(questionPage.page5);
     addToScore();
 };
 
-answerIncorrect.num10.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page4);
-    showElement(questionPage.page5);
-    loseTime();
-};
-answerIncorrect.num11.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page4);
-    showElement(questionPage.page5);
-    loseTime();
-};
-answerIncorrect.num12.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page4);
-    showElement(questionPage.page5);
-    loseTime();
-};
+ansInc4.forEach(element => {
+    element.onclick = () => {
+        console.log('nope!');
+        hideElement(questionPage.page4);
+        showElement(questionPage.page5);
+        loseTime();
+    }
+});
 
 //question 5
-answerCorrect.num5.onclick = function(){
+ansCor5.onclick = () => {
     console.log('yay!');
     hideElement(questionPage.page5);
     showElement(fsPage);
     addToScore();
-    passFinalScore(fsBox);
+    passFinalScore();
     stopTimer();
 };
 
-answerIncorrect.num13.onclick = function(){
-    console.log('nope!');
-    hideElement(questionPage.page5);
-    showElement(fsPage);
-    loseTime();
-    passFinalScore(fsBox);
-    stopTimer();
-};
+ansInc5.forEach(element => {
+    element.onclick = () => {
+        console.log('nope!');
+        hideElement(questionPage.page5);
+        showElement(fsPage);
+        loseTime();
+        passFinalScore();
+        stopTimer();
+    }
+});
 
-submitHS.addEventListener('click', collectHighScore);
+
+//finalscore page
+submitHS.addEventListener('click', function(event){
+    event.preventDefault();
+    let alphaChar = /^[A-Za-z]+$/;
+    if (!initialInput.value.match(alphaChar)){
+        alert('Please enter your initials with letters only before submission.');
+        return;
+    } else {
+        let userHS = {
+            score: finalScore,
+            initials: initialInput.value.toUpperCase(),
+            time: secondsPast + " sec"
+        }
+        highScores.push(userHS);
+        highScores.sort((a, b) => b.score - a.score);
+        highScores.splice(5);
+        console.log(highScores);
+        storeHS();
+        fsForm.reset();
+        }
+    hideElement(fsPage);
+    showElement(hsPage);
+    displayHS();
+});//logs user initials and scores to object after checking that they gave initials. Sends info to local storage, the console, and the high scores page.
+
+//highscores page
+resetButton.onclick = () => {
+    stopTimer();
+    showElement(introPage);
+    hideElement(hsPage);
+    fsBox.textContent = '';
+    showElement(fsForm);
+    finalScore = 0;
+    secondsPast = 0;
+    secondsLeft = 60;
+}
+clearScoresButton.onclick = () => {
+    highScores = [];
+    storeHS();
+    highScoreList.innerHTML = '';
+    stopTimer();
+}
+
+startGame();//initiates the beginning state of game.
+displayHS();
+
