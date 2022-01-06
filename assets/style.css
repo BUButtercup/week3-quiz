@@ -266,7 +266,7 @@ div#hs-buttons {
     
     button:hover {
         background-color: slategray;
-        color: whitesmoke;
+        color: black;
         box-shadow: 0 0 5px 5px magenta;
         border: none;
     }
