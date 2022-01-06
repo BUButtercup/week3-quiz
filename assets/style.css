@@ -65,7 +65,7 @@ a:hover {
 }
 
 button {
-    background-color: steelblue;
+    background-color: lightgray;
     font-size: 1.25rem;
     padding: 5px 10px;
     margin: 10px;
@@ -73,16 +73,17 @@ button {
 }
 
 button:visited {
-    background-color: steelblue;
+    background-color: lightgray;
     padding: 3px;
     margin: 3px;
     border: none;
 }
 
 button:hover {
-    background-color: rgb(109, 165, 211);
+    background-color: darkgray;
     color: whitesmoke;
     border: none;
+    box-shadow: 0 0 5px 5px magenta;
 }
 
 button.ans {
@@ -200,7 +201,7 @@ section.scores {
 }
 
 section.scores li {
-    background-color: rgb(109, 165, 211);
+    background-color: lightgray;
     padding: 5px 10px;
     margin: 5px 0;
 }

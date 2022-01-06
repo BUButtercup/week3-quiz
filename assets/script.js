@@ -138,7 +138,7 @@ function gotItRight(element1, element2){
     console.log('yay!');
     notifyBox.setAttribute('style', 'font-size: 2rem; color: whitesmoke; font-weight: bold;');
     notifyBox.textContent = 'You got it!';
-    setTimeout(changeCard, 750, element1, element2);
+    setTimeout(changeCard, 650, element1, element2);
     addToScore();
 }
 
@@ -146,7 +146,7 @@ function gotItWrong(element1, element2){
     console.log('nope!');
     notifyBox.setAttribute('style', 'font-size: 2rem; color: red; font-weight: bold;');
     notifyBox.textContent = 'Nope!';
-    setTimeout(changeCard, 750, element1, element2);
+    setTimeout(changeCard, 650, element1, element2);
     loseTime();
 }
 
