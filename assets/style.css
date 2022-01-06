@@ -44,7 +44,8 @@ main {
 section {
     display: flex;
     flex-direction: column;
-    width: 450px;
+    min-width: 200px;
+    max-width: 450px;
     font-size: 1.5em; 
 }
 
@@ -207,4 +208,39 @@ section.scores li {
 div#hs-buttons {
     display: flex;
     flex-direction: row;
+}
+
+@media screen and (max-width: 460px) {
+    :root {
+        font-size: 10px;
+    }
+    header {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    header.head {
+        padding: 0;
+        margin: 0;
+    }
+    div#box {
+        width: 50px;
+    }
+    main {
+        margin-top: 20%;
+        padding: 0 15px;
+    }
+    button.ans {
+        width: 90%;
+
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+    #initials {
+        width: 95%;
+        align-self: center;
+    }
 }
