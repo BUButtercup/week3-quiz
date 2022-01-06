@@ -27,23 +27,25 @@ header {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
+    align-items: center;
+    font-size: 2em;
+    padding: 10px;
 }
 
 main {
    display: flex;
    flex-direction: column;
    height: 100%;
-   justify-content: center;
-   align-items: center; 
-   border: 1px solid black;
+   justify-content: start;
+   align-items: center;
+   margin-top: 10%;
 }
 
 section {
     display: flex;
     flex-direction: column;
     width: 450px;
-    border: 1px solid black;
+    font-size: 1.5em; 
 }
 
 a:link {
@@ -63,8 +65,9 @@ a:hover {
 
 button {
     background-color: steelblue;
-    padding: 3px;
-    margin: 3px;
+    font-size: 1.25rem;
+    padding: 5px 10px;
+    margin: 10px;
     border: none;
 }
 
@@ -83,33 +86,39 @@ button:hover {
 
 button.ans {
     text-align: left;
-    padding-left: 5px;
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2.5rem;
     font-weight: 700;
     padding: 5px 0;
-    border: 1px solid black;
+    margin-bottom: 10px;
+    text-decoration: underline;
 }
 
 li {
     list-style: none;
 }
 
-/* .hide {
-    display: none;
-} */
+/**header**/
+header a.view-hs {
+    margin: 0 10px;
+}
 
 /**timer**/
 div#timer {
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
+    align-items: center;
+}
+
+div#timer span {
+    margin: 0 10px;
 }
 
 div#box {
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
     height: 1.5em;
     width: 3em;
 }
@@ -121,14 +130,22 @@ section#intro {
     text-align: center;
 }
 
-section#intro h1 {
-    margin-bottom: -20px;
+section#intro h1{
+    margin: -10px;
+}
+
+section#intro p{
+    padding-bottom: 10px;
 }
 
 /*question cards*/
 section.question {
     display: flex;
     flex-direction: column;
+}
+
+section.question p{
+    padding-bottom: 10px;
 }
 
 button.ans {
@@ -142,6 +159,39 @@ section#finalscore {
     line-height: 1.5em;
 }
 
+form {
+    padding:10px 0px;
+}
+
+#initials {
+    height: 2rem;
+}
+
+#submit {
+    background-color: steelblue;
+    font-size: 1.25rem;
+    padding: 5px 10px;
+    margin: 10px;
+    border: none;
+}
+
+#submit:visited {
+    background-color: steelblue;
+    padding: 3px;
+    margin: 3px;
+    border: none;
+}
+
+#submit:hover {
+    background-color: rgb(109, 165, 211);
+    color: whitesmoke;
+    border: none;
+}
+
+p#visit {
+    text-align: center;
+}
+
 /*Highscores*/
 section.scores {
     display: flex;
@@ -150,7 +200,8 @@ section.scores {
 
 section.scores li {
     background-color: rgb(109, 165, 211);
-    margin: 2px 0;
+    padding: 5px 10px;
+    margin: 5px 0;
 }
 
 div#hs-buttons {

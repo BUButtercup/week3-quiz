@@ -10,7 +10,7 @@
 <body>
     <header>
         <a class="view-hs" href="#">View Highscores</a>
-        <div id="timer"><span>Time: </span><div id="box"></div></div>
+        <div id="timer"><span>Time: </span><div id="box">0</div></div>
     </header>
     <main>
         <section id="intro">
@@ -25,10 +25,10 @@
             What can you NOT put in an array?
             </p>
             <ul>
-                <li><button class="ans correct" id="corr1">You can put any data type in an array, you just can't mix them.</button></li>
+                <li><button class="ans correct" id="corr1">You can store any data type in an array.</button></li>
                 <li><button class="ans incorrect1" id="incorr1">Booleans</button></li>
                 <li><button class="ans incorrect1" id="incorr2">strings</button></li>
-                <li><button class="ans incorrect1" id="incorr3">integers</button></li>
+                <li><button class="ans incorrect1" id="incorr3">You can put any data type in an array, you just can't mix them.</button></li>
             </ul>
         </section>
     <!--question 2-->
@@ -88,7 +88,7 @@
                 <input type="text" name="initials" id="initials"> 
                 <input type="submit" id="submit">
             </form>
-            <p>Visit "View Highscores" to see where you rank!</p>
+            <p id="#visit">Visit "View Highscores" to see where you rank!</p>
         </section>
     <!--highscores-->
         <section class="scores" id="hs">
@@ -100,6 +100,7 @@
                 <button id="clear">Clear Highscores</button>
             </div>
         </section>
+        <div id="notify"></div>
     </main>
     <script src="assets/script.js"></script>
 </body>

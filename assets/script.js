@@ -31,6 +31,7 @@ const ansInc3 = document.querySelectorAll('.incorrect3');
 const ansInc4 = document.querySelectorAll('.incorrect4');
 const ansInc5 = document.querySelectorAll('.incorrect5');
 
+const notifyBox = document.querySelector('#notify')
 const fsPage = document.querySelector('#finalscore');
 const fsBox = document.querySelector('#fs');
 const fsForm = document.querySelector('form');
@@ -90,6 +91,7 @@ function showElement(element){
 function changeCard(element1, element2){
     hideElement(element1);
     showElement(element2);
+    notifyBox.textContent = '';
 }//to switch to next card in sequence
 
 function passFinalScore(){
@@ -132,95 +134,93 @@ function addToScore(){
         return finalScore;
 }//when correct answer selected, 10 points added to finalScore
 
+function gotItRight(element1, element2){
+    console.log('yay!');
+    notifyBox.setAttribute('style', 'font-size: 2rem; color: whitesmoke; font-weight: bold;');
+    notifyBox.textContent = 'You got it!';
+    setTimeout(changeCard, 1000, element1, element2);
+    addToScore();
+}
+
+function gotItWrong(element1, element2){
+    console.log('nope!');
+    notifyBox.setAttribute('style', 'font-size: 2rem; color: red; font-weight: bold;');
+    notifyBox.textContent = 'Nope!';
+    setTimeout(changeCard, 1000, element1, element2);
+    loseTime();
+}
+
 viewHSEl.forEach(element => {
     element.addEventListener('click', function(){
         hideQuestions();
         hideElement(fsPage);
         hideElement(introPage);
         showElement(hsPage);
+        stopTimer()
+        secondsLeft = 0;
     });
 });
 
 //to start game
-startButtonEl.addEventListener('click', function(){
+startButtonEl.addEventListener('click', function(event){
+    event.preventDefault();
     changeCard(introPage, questionPage.page1)
     startTimer();
 });
 
-//question 1
 ansCor1.onclick = () => {
-    console.log('yay!');
-    changeCard(questionPage.page1, questionPage.page2);
-    addToScore();
-};
+    gotItRight(questionPage.page1, questionPage.page2);
+}
 
 ansInc1.forEach(element => {
     element.onclick = () => {
-        console.log('nope!');
-        changeCard(questionPage.page1, questionPage.page2);
-        loseTime();
+        gotItWrong(questionPage.page1, questionPage.page2);
     }
 });
 
 //question 2
 ansCor2.onclick = () => {
-    console.log('yay!');
-    changeCard(questionPage.page2, questionPage.page3);
-    addToScore();
+    gotItRight(questionPage.page2, questionPage.page3);
 };
 
 ansInc2.forEach(element => {
     element.onclick = () => {
-        console.log('nope!');
-        changeCard(questionPage.page2, questionPage.page3);
-        loseTime();
+        gotItWrong(questionPage.page2, questionPage.page3);
     }
 });
 
 //question 3
 ansCor3.onclick = () => {
-    console.log('yay!');
-    changeCard(questionPage.page3, questionPage.page4);
-    addToScore();
+    gotItRight(questionPage.page3, questionPage.page4);
 };
 
 ansInc3.forEach(element => {
     element.onclick = () => {
-        console.log('nope!');
-        changeCard(questionPage.page3, questionPage.page4);
-        loseTime();
+        gotItWrong(questionPage.page3, questionPage.page4);
     }
 });
 
 //question 4
 ansCor4.onclick = () => {
-    console.log('yay!');
-    changeCard(questionPage.page4, questionPage.page5);
-    addToScore();
+    gotItRight(questionPage.page4, questionPage.page5);
 };
 
 ansInc4.forEach(element => {
     element.onclick = () => {
-        console.log('nope!');
-        changeCard(questionPage.page4, questionPage.page5);
-        loseTime();
+        gotItWrong(questionPage.page4, questionPage.page5);
     }
 });
 
 //question 5
 ansCor5.onclick = () => {
-    console.log('yay!');
-    changeCard(questionPage.page5, fsPage);
-    addToScore();
+    gotItRight(questionPage.page5, fsPage);
     passFinalScore();
     stopTimer();
 };
 
 ansInc5.forEach(element => {
     element.onclick = () => {
-        console.log('nope!');
-        changeCard(questionPage.page5, fsPage);
-        loseTime();
+        gotItWrong(questionPage.page5, fsPage);
         passFinalScore();
         stopTimer();
     }
