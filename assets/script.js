@@ -132,16 +132,6 @@ function addToScore(){
         return finalScore;
 }//when correct answer selected, 10 points added to finalScore
 
-
-//highscore page links
-// viewHSEl.forEach(element => {
-//     element.onclick = () => {
-//         hideQuestions();
-//         hideElement(fsPage);
-//         hideElement(introPage);
-//         showElement(hsPage);
-//     }
-// });
 viewHSEl.forEach(element => {
     element.addEventListener('click', function(){
         hideQuestions();
@@ -153,24 +143,21 @@ viewHSEl.forEach(element => {
 
 //to start game
 startButtonEl.addEventListener('click', function(){
-    hideElement(introPage);
-    showElement(questionPage.page1);
+    changeCard(introPage, questionPage.page1)
     startTimer();
 });
 
 //question 1
 ansCor1.onclick = () => {
     console.log('yay!');
-    hideElement(questionPage.page1);
-    showElement(questionPage.page2);
+    changeCard(questionPage.page1, questionPage.page2);
     addToScore();
 };
 
 ansInc1.forEach(element => {
     element.onclick = () => {
         console.log('nope!');
-        hideElement(questionPage.page1);
-        showElement(questionPage.page2);
+        changeCard(questionPage.page1, questionPage.page2);
         loseTime();
     }
 });
@@ -178,16 +165,14 @@ ansInc1.forEach(element => {
 //question 2
 ansCor2.onclick = () => {
     console.log('yay!');
-    hideElement(questionPage.page2);
-    showElement(questionPage.page3);
+    changeCard(questionPage.page2, questionPage.page3);
     addToScore();
 };
 
 ansInc2.forEach(element => {
     element.onclick = () => {
         console.log('nope!');
-        hideElement(questionPage.page2);
-        showElement(questionPage.page3);
+        changeCard(questionPage.page2, questionPage.page3);
         loseTime();
     }
 });
@@ -195,16 +180,14 @@ ansInc2.forEach(element => {
 //question 3
 ansCor3.onclick = () => {
     console.log('yay!');
-    hideElement(questionPage.page3);
-    showElement(questionPage.page4);
+    changeCard(questionPage.page3, questionPage.page4);
     addToScore();
 };
 
 ansInc3.forEach(element => {
     element.onclick = () => {
         console.log('nope!');
-        hideElement(questionPage.page3);
-        showElement(questionPage.page4);
+        changeCard(questionPage.page3, questionPage.page4);
         loseTime();
     }
 });
@@ -212,16 +195,14 @@ ansInc3.forEach(element => {
 //question 4
 ansCor4.onclick = () => {
     console.log('yay!');
-    hideElement(questionPage.page4);
-    showElement(questionPage.page5);
+    changeCard(questionPage.page4, questionPage.page5);
     addToScore();
 };
 
 ansInc4.forEach(element => {
     element.onclick = () => {
         console.log('nope!');
-        hideElement(questionPage.page4);
-        showElement(questionPage.page5);
+        changeCard(questionPage.page4, questionPage.page5);
         loseTime();
     }
 });
@@ -229,8 +210,7 @@ ansInc4.forEach(element => {
 //question 5
 ansCor5.onclick = () => {
     console.log('yay!');
-    hideElement(questionPage.page5);
-    showElement(fsPage);
+    changeCard(questionPage.page5, fsPage);
     addToScore();
     passFinalScore();
     stopTimer();
@@ -239,8 +219,7 @@ ansCor5.onclick = () => {
 ansInc5.forEach(element => {
     element.onclick = () => {
         console.log('nope!');
-        hideElement(questionPage.page5);
-        showElement(fsPage);
+        changeCard(questionPage.page5, fsPage);
         loseTime();
         passFinalScore();
         stopTimer();
