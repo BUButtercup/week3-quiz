@@ -210,15 +210,67 @@ div#hs-buttons {
     flex-direction: row;
 }
 
+/*mobile*/
 @media screen and (max-width: 460px) {
     :root {
         font-size: 10px;
     }
+
+    body {
+        background-color: cadetblue;
+        color: black;
+    }
+
     header {
         flex-direction: column;
         justify-content: center;
         align-content: center;
     }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    a:link {
+        text-decoration: none;
+        color: black;
+    }
+    
+    a:visited {
+        text-decoration: none;
+        color: black;
+    }
+    
+    a:hover {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    
+    button {
+        background-color: slategray;
+        color: whitesmoke;
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 5px 10px;
+        margin: 10px;
+        border: none;
+    }
+    
+    button:visited {
+        background-color: slategray;
+        padding: 3px;
+        margin: 3px;
+        border: none;
+    }
+    
+    button:hover {
+        background-color: slategray;
+        color: whitesmoke;
+        box-shadow: 0 0 5px 5px magenta;
+        border: none;
+    }
+
     header.head {
         padding: 0;
         margin: 0;
@@ -227,9 +279,16 @@ div#hs-buttons {
         width: 50px;
     }
     main {
-        margin-top: 20%;
+        margin-top: 15%;
         padding: 0 15px;
     }
+
+    section {
+        padding: 5px;
+        background-color:lightcyan;
+        border: 3px solid slategray;
+    }
+
     button.ans {
         width: 90%;
 
